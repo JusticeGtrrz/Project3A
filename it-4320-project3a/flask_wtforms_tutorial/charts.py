@@ -11,30 +11,8 @@ import pygal
 from flask import request
 
 #Helper function for converting date
-def ChartGen():
-    global StepData
-    global symbol
-    global time_series
-    if chart_type == '1. Bar':
-        chart = pygal.Bar(spacing=100, fill=True, x_label_rotation=40)
-        chart.title = ('Stock Data for '+ symbol + ': ' + start_date +' to ' + end_date)
-        chart.x_labels =('Red', 'Blue', 'Green', 'Yellow')
-        chart.x_labels = Date
-        chart.add('Open', Open)
-        chart.add('High', Close)
-        chart.add('Low', Low)
-        chart.add('close', Close)
-        return chart.render_response()
-    else:
-        chart = pygal.Line(spacing=100, fill=False, x_label_rotation=40)
-        chart.title = ('Stock Data for '+ symbol + ': ' + start_date +' to ' + end_date)
-        chart.x_labels =('Red', 'Blue', 'Green', 'Yellow')
-        chart.x_labels = Date
-        chart.add('Open', Open)
-        chart.add('High', Close)
-        chart.add('Low', Low)
-        chart.add('close', Close)
-        return chart.render_response()
+
+    
     
 def convert_date(str_date):
     return datetime.strptime(str_date, '%Y-%m-%d').date()
@@ -94,8 +72,6 @@ def PopChart():
         High.reverse()
         Low.reverse()
         Close.reverse()
-    ChartGen()
-def ChartGen():
     if chart_type == '1. Bar':
         chart = pygal.Bar(spacing=100, fill=True, x_label_rotation=40)
         chart.title = ('Stock Data for '+ symbol + ': ' + start_date +' to ' + end_date)
