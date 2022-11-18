@@ -5,10 +5,12 @@ from .forms import StockForm
 from .charts import *
 
 
+
+
 @app.route("/", methods=['GET', 'POST'])
 @app.route("/stocks", methods=['GET', 'POST'])
 def stocks():
-    
+
     form = StockForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -30,7 +32,10 @@ def stocks():
                 #THIS IS WHERE YOU WILL CALL THE METHODS FROM THE CHARTS.PY FILE AND IMPLEMENT YOUR CODE
                 StockFunc()
                 #This chart variable is what is passed to the stock.html page to render the chart returned from the api
-                chart = "ASSIGN CHART TO THIS VARIABLE"
+                from .charts import PopChart
+                chartvar = PopChart()
+                chart = chartvar
+                
 
             return render_template("stock.html", form=form, template="form-template", err = err, chart = chart)
     
